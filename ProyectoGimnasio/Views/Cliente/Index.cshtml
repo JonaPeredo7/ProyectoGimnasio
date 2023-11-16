@@ -1,0 +1,175 @@
+﻿@model List<ProyectoGimnasio.Models.ClienteCLS>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Base de datos de tu Gimnasio</h2>
+
+
+@*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#excelModal">Generar Excel</button>*@
+
+@using (Html.BeginForm("Filtrar", "Cliente", FormMethod.Get))
+{
+    <div class="form-group">
+        <label for="filtro">Buscar:</label>
+        <input type="text" id="filtro" name="filtro" class="form-control" />
+    </div>
+    <input type="submit" class="btn btn-warning" value="Filtrar" />
+}
+
+<link href="~/web/css/EstilosIndex.css" rel="stylesheet" type="text/css" />
+
+@Html.ActionLink("Agregar", "Agregar", "Cliente", null, new { @class = "btn btn-primary" })
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Empleado</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha Ingreso</th>
+            <th>Tipo de Plan</th>
+            <th>Sexo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var colorClass = CalcularColorParaPago(item.FECHAINGRESO);
+
+            <tr>
+                <td>@item.IDCLIENTE</td>
+                <td>@item.NOMBRE</td>
+                <td>@item.APELLIDO</td>
+                <td>@item.FECHAINGRESO</td>
+                 <td>@item.TIPODEPLAN</td>
+                <td>
+                    @if (item.IDSEXO == 1)
+                    {
+                        <strong>Femenino</strong>
+                    }
+                    else
+                    {
+                        <strong>Masculino</strong>
+                    }
+                </td>
+                <td>
+                    @{
+                        var fechaIngreso = item.FECHAINGRESO;
+                        var fechaActual = DateTime.Now;
+                        var diasDePrueba = 10;
+                        var diasDePago = 30;
+
+                        var fechaDePago = fechaIngreso.AddDays(diasDePrueba);
+
+                        if (fechaActual > fechaDePago)
+                        {
+                            fechaDePago = fechaDePago.AddMonths(1);
+                        }
+
+                        <div class="fecha-cell @colorClass">
+                            @fechaIngreso.ToString("yyyy-MM-dd")
+                        </div>
+                    }
+                </td>
+
+                <td>
+                <td>
+                    <a href="@Url.Action("editar", "Cliente", new { id = item.IDCLIENTE })" class="btn btn-primary">Editar</a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal-@item.IDCLIENTE">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal de eliminación -->
+@foreach (var empleado in Model)
+{
+    <div class="modal fade" id="eliminarModal-@empleado.IDCLIENTE" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel-@empleado.IDCLIENTE" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eliminarModalLabel-@empleado.IDCLIENTE">Confirmar eliminación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas eliminar el empleado?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a href="@Url.Action("Eliminar", "Cliente", new { id = empleado.IDCLIENTE })" class="btn btn-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Modal de Generar PDF -->
+<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Generar PDF</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Haz clic en el botón de abajo para generar un PDF con los datos de los empleados.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a href="@Url.Action("GenerarPDF", "Cliente")" class="btn btn-info">Generar PDF</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var frmFiltrado = document.getElementById("frmFiltrado");
+    var nombreFiltro = document.getElementById("nombreFiltro");
+    nombreFiltro.onkeyup = function () {
+        $("#frmFiltrado").trigger("submit");
+    }
+</script>
+
+@functions {
+    string CalcularColorParaPago(DateTime fechaIngreso)
+    {
+        var fechaActual = DateTime.Now;
+        var diasDePrueba = 10;
+        var diasDePago = 30;
+        var fechaDePago = fechaIngreso.AddDays(diasDePrueba);
+
+        if (fechaActual > fechaDePago)
+        {
+            fechaDePago = fechaDePago.AddMonths(1);
+        }
+
+        var diferenciaDias = (fechaDePago - fechaActual).Days;
+
+        if (diferenciaDias <= 1)
+        {
+            return "bg-red"; // 1 día o menos para el pago.
+        }
+        else if (diferenciaDias <= 5)
+        {
+            return "bg-orange"; // 5 días o menos para el pago.
+        }
+        else if (diferenciaDias <= 7)
+        {
+            return "bg-yellow"; // 7 días o menos para el pago.
+        }
+        else
+        {
+            return "bg-green"; // Más de 7 días para el pago.
+        }
+    }
+}
+
+

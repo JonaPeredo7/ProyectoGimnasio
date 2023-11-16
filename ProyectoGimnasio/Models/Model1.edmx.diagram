@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c1dc7afed84d465785bde9615bd6bf31" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="Model.AsistenciaAClase" Width="1.5" PointX="13.625" PointY="4.75" />
+        <EntityTypeShape EntityType="Model.Clase" Width="1.5" PointX="10.5" PointY="0.625" />
+        <EntityTypeShape EntityType="Model.Cliente" Width="1.5" PointX="8.625" PointY="4.125" />
+        <EntityTypeShape EntityType="Model.Opinion" Width="1.5" PointX="9.875" PointY="9.625" />
+        <EntityTypeShape EntityType="Model.Pagina" Width="1.5" PointX="13.375" PointY="8.875" />
+        <EntityTypeShape EntityType="Model.PlanMembresia" Width="1.5" PointX="4.375" PointY="2.375" />
+        <EntityTypeShape EntityType="Model.Rol" Width="1.5" PointX="10.125" PointY="12.75" />
+        <EntityTypeShape EntityType="Model.RolPagina" Width="1.5" PointX="16" PointY="9.25" />
+        <EntityTypeShape EntityType="Model.Sexo" Width="1.5" PointX="4.375" PointY="9.375" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="16.5" PointY="0.875" />
+        <EntityTypeShape EntityType="Model.TipoUsuario" Width="1.5" PointX="4.375" PointY="5.75" />
+        <EntityTypeShape EntityType="Model.Turno" Width="1.5" PointX="7" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.Usuarios" Width="1.5" PointX="11.125" PointY="5.25" />
+        <AssociationConnector Association="Model.FK__Asistenci__IDCLA__690797E6" ManuallyRouted="true" >
+          <ConnectorPoint PointX="10.90625" PointY="3.1821907552083335" />
+          <ConnectorPoint PointX="10.90625" PointY="3.7253482309895856" />
+          <ConnectorPoint PointX="13.117670996114612" PointY="3.7253482309895856" />
+          <ConnectorPoint PointX="13.117670996114612" PointY="4.8281225000000063" />
+          <ConnectorPoint PointX="13.625" PointY="4.8281225000000063" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK__Asistenci__IDCLI__6CD828CA" />
+        <AssociationConnector Association="Model.FK_Clase_Turno" />
+        <AssociationConnector Association="Model.FK__Opinion__IDCLIEN__6FB49575" />
+        <AssociationConnector Association="Model.FK_Cliente_PlanMembresia" />
+        <AssociationConnector Association="Model.FK_Cliente_Sexo" />
+        <AssociationConnector Association="Model.FK_Cliente_TipoUsuario" />
+        <AssociationConnector Association="Model.FK__RolPagina__IDROL__540C7B00" />
+        <AssociationConnector Association="Model.FK__Usuarios__IDRol__55009F39" />
+        <AssociationConnector Association="Model.FK_Usuarios_TipoUsuario" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

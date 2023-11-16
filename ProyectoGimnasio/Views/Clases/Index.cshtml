@@ -1,0 +1,35 @@
+﻿@model List<ProyectoGimnasio.Models.Clase>
+
+@{
+    ViewBag.Title = "Lista de Clases";
+}
+
+<h2>Lista de Clases</h2>
+
+@Html.ActionLink("Agregar Clase", "Agregar", "Clase", null, new { @class = "btn btn-primary" })
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre de la Clase</th>
+            <th>Descripción</th>
+            <th>Horario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var clase in Model)
+        {
+            <tr>
+                <td>@clase.NOMBRECLASE</td>
+                <td>@clase.DESCRIPCION</td>
+                <td>@clase.HORARIO</td>
+                <td>
+                    @Html.ActionLink("Detalles", "Detalles", new { id = clase.IDCLASE }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Editar", "Editar", new { id = clase.IDCLASE }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = clase.IDCLASE }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,62 @@
+﻿@using ProyectoGimnasio.Models
+@model ClienteCLS
+@{
+    ViewBag.Title = "Editar";
+    List<SelectListItem> listaSexo = (List<SelectListItem>)ViewBag.lista;
+}
+
+<h2>Editar</h2>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Editar", "Cliente", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(p => p.IDCLIENTE)
+                @Html.TextBoxFor(p => p.IDCLIENTE, new { @class = "form-control", @readonly = "readonly" })
+                @Html.HiddenFor(p => p.IDCLIENTE)
+            </div>
+            <div>
+                @Html.LabelFor(p => p.NOMBRE)
+                @Html.TextBoxFor(p => p.NOMBRE, new { @class = "form-control" })
+                @Html.ValidationMessageFor(p => p.NOMBRE, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.APELLIDO)
+                @Html.TextBoxFor(p => p.APELLIDO, new { @class = "form-control" })
+                @Html.ValidationMessageFor(p => p.APELLIDO, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.FECHAINGRESO)
+                @Html.TextBoxFor(p => p.FECHAINGRESO, new { @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(p => p.FECHAINGRESO, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.TIPODEPLAN)
+                @Html.TextBoxFor(p => p.TIPODEPLAN, new { @class = "form-control" })
+                @Html.ValidationMessageFor(p => p.IDPLAN, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.IDSEXO)
+                @Html.DropDownListFor(p => p.IDSEXO, listaSexo, "Seleccionar", new { @class = "form-control" })
+                @Html.ValidationMessageFor(p => p.IDSEXO, "", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div style="margin:auto">
+                <input type="submit" class="btn btn-primary" value="Guardar Cambios" />
+            </div>
+        }
+        <div>
+            @Html.ActionLink("Volver", "Index", "Cliente", null, new { @class = "btn btn-info" })
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            // Inicializar el selector de fecha
+            $('.datepicker').datepicker();
+        });
+    </script>
+}
+

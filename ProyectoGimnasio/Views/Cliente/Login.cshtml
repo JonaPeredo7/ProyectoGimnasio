@@ -1,0 +1,55 @@
+﻿@using ProyectoGimnasio.Models
+@model UsuarioCLS
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <!-- Estilos CSS -->
+    <link href="~/web/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome -->
+    <link href="~/web/css/fontawesome-all.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+</head>
+<body>
+    <h1>Base de Datos</h1>
+    <div class="w3l-login-form">
+        <h2>Inicio de Sesión</h2>
+        @using (Html.BeginForm("Login", "Cliente", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+        {
+            <div class="w3l-form-group">
+                @Html.LabelFor(p => p.Usuario)
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    @Html.EditorFor(model => model.Usuario, new { @type = "text", @required = "" })
+                    @Html.ValidationMessageFor(p => p.Usuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="w3l-form-group">
+                @Html.LabelFor(p => p.Contraseña)
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    @Html.PasswordFor(model => model.Contraseña, new { @type = "password", @required = "" })
+                    @Html.ValidationMessageFor(p => p.Contraseña, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="forgot">
+                <a href="#">¿Olvidaste tu Contraseña?</a>
+                <p><input type="checkbox">Recordarme</p>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        }
+        <p href="#">Registra un Nuevo Usuario</p>@Html.ActionLink("Registrar", "Registro", "Cliente", null, new { @class = "btn btn-primary" })
+    </div>
+    <footer>
+        <p>&copy; 2023 Login para Base de Datos. Todos los derechos reservados. Design by <a href="https://ites.edu.ar/">I.T.E.S</a></p>
+    </footer>
+</body>
+</html>

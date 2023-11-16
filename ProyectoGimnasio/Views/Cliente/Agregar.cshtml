@@ -1,0 +1,83 @@
+﻿@using ProyectoGimnasio.Models
+@model ClienteCLS
+@{
+    ViewBag.Title = "Agregar";
+    List<SelectListItem> listaSexo = (List<SelectListItem>)ViewBag.lista;
+}
+
+<h2>Agregar</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post, new { id = "agregarForm" }))
+        {
+            <div>
+                @Html.LabelFor(p => p.NOMBRE)
+                @Html.TextBoxFor(p => p.NOMBRE, new { @class = "form-control" })
+                @Html.ValidationMessage("NOMBRE", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.APELLIDO)
+                @Html.TextBoxFor(p => p.APELLIDO, new { @class = "form-control" })
+                @Html.ValidationMessage("APELLIDO", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.FECHAINGRESO)
+                @Html.EditorFor(p => p.FECHAINGRESO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("FECHA INGRESO", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.TIPODEPLAN)
+                @Html.TextBoxFor(p => p.TIPODEPLAN, new { @class = "form-control" })
+                @Html.ValidationMessage("TIPO DE PLAN", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.IDSEXO)
+                @Html.DropDownList("IDSEXO", listaSexo, null, new { @class = "form-control" })
+                @Html.ValidationMessage("SEXO", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div style="margin:auto">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarModal">
+                    Agregar
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Modal de agregar empleado -->
+<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="agregarModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarModalLabel">Confirmar alta de cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas agregar al cliente?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <input type="submit" class="btn btn-primary" value="Agregar" form="agregarForm" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+}

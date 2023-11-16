@@ -1,0 +1,75 @@
+﻿@using ProyectoGimnasio.Models
+@model UsuarioCLS
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transitive Register form  a Flat Responsive Widget Template :: w3layouts</title>
+    <!-- metatags-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Transitive register form a Flat Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
+    <!-- Meta tag Keywords -->
+    <link href="~/registro/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/registro/css/font-awesome.css"><!--font_wesome_icons-->
+    <link href="//fonts.googleapis.com/css?family=Exo+2" rel="stylesheet"><!--online fonts-->
+    <link href="//fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"><!--online fonts-->
+</head>
+<body>
+    <div class="w3ls-headding">
+        <h1><span>f</span>ormulario <span>D</span>e <span>r</span>egistro</h1>
+    </div>
+    <div class="agile-main">
+        <div class="agile-left"></div>
+        <div class="agile-right">
+            @using (Html.BeginForm("Login", "Cliente", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+            {
+                <div class="agile-right-h2">
+                    <h2>Registrate Aqui</h2>
+                </div>
+                <div class="w3l-name">
+                    <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                    @Html.EditorFor(model => model.Usuario, new { @type = "text", @name = "IdUsuario", @placeholder = "Ingrese Nombre de Usuario", @required = "" })
+
+                </div>
+                <div class="clear"></div>
+                <div class="clear"></div>
+                <div class="w3l-psw">
+                    <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    @Html.PasswordFor(model => model.Contraseña, new { @type = "password", @placeholder = "Crear Contraseña", @required = "", @id = "myInput" })
+
+                </div>
+                <div class="clear"></div>
+                <div class="clear"></div>
+
+                <div class="w3l-submit">
+                    <input type="submit" value="Registrate Ahora">
+                </div>
+            }
+        </div>
+    </div>
+
+    <script>
+                function MyFunction() {
+                    var x = document.getElementById("myInput");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+
+
+                }
+
+
+    </script>
+
+

@@ -1,0 +1,44 @@
+﻿<style >
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para las filas con diferentes colores */
+.bg-green {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+.bg-yellow {
+    background-color: #ffc107; /* Amarillo */
+}
+
+.bg-orange {
+    background-color: #fd7e14; /* Naranja */
+}
+
+.bg-red {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+}
+
+/* Estilos para la celda de fecha */
+.fecha-cell {
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+</style >

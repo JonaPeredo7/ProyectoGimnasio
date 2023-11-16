@@ -1,0 +1,31 @@
+﻿@model List<ProyectoGimnasio.Models.RolCLS>
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model[0].IDRol)</th>
+            <th>@Html.DisplayNameFor(model => model[0].NOMBRE)</th>
+            <th>@Html.DisplayNameFor(model => model[0].DESCRIPCION)</th>
+            <th>Operaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.IDRol)</td>
+                <td>@Html.DisplayFor(modelItem => item.NOMBRE)</td>
+                <td>@Html.DisplayFor(modelItem => item.DESCRIPCION)</td>
+                <td>
+                    <button type="button" onclick="Editar(@item.IDRol)" class="btn btn-primary glyphicon glyphicon-edit" data-toggle="modal" data-target="#exampleModal">
+                        Editar
+                    </button>
+                    <button type="button" onclick="Eliminar(@item.IDRol)" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#EliminarConfirmacion">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

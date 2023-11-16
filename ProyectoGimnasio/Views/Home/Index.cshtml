@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido a Nuestro Gimnasio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url(https://camaradegimnasios.org.ar/assets/scripts/load.php?src=https://camaradegimnasios.org.ar/assets/admin/uploads/164-3305820w1033-1594756318.jpg&q=80&w=810&h=500&zc=1); /* Cambia 'gym-background.jpg' por la URL de tu imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            padding: 100px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #000000; /* Cambia el color del texto a blanco */
+        }
+
+        p {
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #000000; /* Cambia el color del texto a blanco */
+        }
+
+        .btn {
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bienvenido a Tu Gimnasio</h1>
+        <p>Transforma tu vida, mejora tu salud y alcanza tus objetivos fitness con nosotros.</p>
+        @Html.ActionLink("Nuestros Servicios", "Index", "Cliente", null, new { @class = "btn btn-primary" })
+    </div>
+
+</body>
+</html>
